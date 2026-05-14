@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Canvas;
 
 public class Bienvenida extends JFrame {
 
@@ -74,5 +75,4 @@ public class Bienvenida extends JFrame {
 		contentPane.add(lblNewLabel);
 
 	}
-
 }

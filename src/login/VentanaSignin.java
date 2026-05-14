@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+import modelo.archivousuarios;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -72,7 +76,10 @@ public class VentanaSignin extends JFrame {
 		JButton btnNewButton = new JButton("Crear User");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,  "Bienvenido nuevo doc", "Nuevo doccc", 3);
+				Usuario nuevo= new Usuario(textPane.getText(), passwordField.getText());
+				archivousuarios.guardarUsuario(nuevo);
+				JOptionPane.showMessageDialog(null,  "Nuevo usuario guardado", "Nuevo doccc", 3);
+				
 			}
 		});
 		btnNewButton.setBounds(303, 245, 84, 20);

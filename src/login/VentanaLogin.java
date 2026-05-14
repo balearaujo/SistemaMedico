@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+import modelo.archivousuarios;
+
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JPasswordField;
@@ -12,6 +16,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 public class VentanaLogin extends JFrame {
@@ -72,7 +77,21 @@ public class VentanaLogin extends JFrame {
 		JButton btnNewButton = new JButton("Enviar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Estamos dentro o quizá no", "LogIn", 1);
+				ArrayList<Usuario>usuarios = archivousuarios.leerTodos();
+				boolean encontrado=false;
+				for (Usuario u: usuarios) {
+					if (u.getUser().equals(nombre.getText())&& u.getPswd().equals(contrasenia.getText())) {
+						encontrado=true;
+					}
+				}
+				if (encontrado) {
+					JOptionPane.showMessageDialog(null, "Estamos dentro", "LogIn", 1);
+					VentanaMenu menu=new VentanaMenu();
+					menu.setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Aun no te registras", "LogIn", 1);
+				}
 			}
 		});
 		btnNewButton.setBounds(277, 241, 84, 20);

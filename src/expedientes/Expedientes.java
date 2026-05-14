@@ -1,7 +1,7 @@
 package expedientes;
 import java.io.Serializable;
 
-public class Expedientes {
+public class Expedientes implements Serializable {
 	private static final long serialVersionUID=1L;
 	private String estomatologo;
 	private String Nombre;
@@ -148,6 +148,10 @@ public class Expedientes {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public String toString(){
+		return "Medico: " + estomatologo +"Paciente: " + Nombre;
 	}
 			
 }

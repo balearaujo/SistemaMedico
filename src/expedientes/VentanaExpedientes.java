@@ -1,7 +1,6 @@
 package expedientes;
-
 import java.awt.EventQueue;
-
+import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class VentanaExpedientes extends JFrame {
 
@@ -52,124 +54,133 @@ public class VentanaExpedientes extends JFrame {
 	 */
 	public VentanaExpedientes() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 398, 506);
+		setBounds(100, 100, 457, 677);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Datos del Paciente");
-		lblNewLabel_1.setBounds(28, 103, 92, 13);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setForeground(new Color(0, 64, 128));
+		lblNewLabel_1.setBounds(27, 163, 188, 13);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("Expediente");
-		lblNewLabel.setBounds(160, 20, 50, 13);
+		lblNewLabel.setForeground(new Color(0, 64, 128));
+		lblNewLabel.setBackground(new Color(0, 64, 128));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(148, 4, 168, 53);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
-		lblNewLabel_2.setBounds(28, 126, 44, 12);
+		lblNewLabel_2.setBounds(27, 186, 76, 12);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Edad");
-		lblNewLabel_3.setBounds(28, 148, 44, 12);
+		lblNewLabel_3.setBounds(27, 213, 44, 12);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Sexo");
-		lblNewLabel_4.setBounds(28, 182, 44, 12);
+		lblNewLabel_4.setBounds(27, 242, 44, 12);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Peso");
-		lblNewLabel_5.setBounds(217, 126, 44, 12);
+		lblNewLabel_5.setBounds(216, 213, 44, 12);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Altura");
-		lblNewLabel_6.setBounds(217, 172, 44, 12);
+		lblNewLabel_6.setBounds(216, 242, 44, 12);
 		contentPane.add(lblNewLabel_6);
 		
 		nombre = new JTextField();
-		nombre.setBounds(76, 126, 96, 18);
+		nombre.setBounds(75, 186, 96, 18);
 		contentPane.add(nombre);
 		nombre.setColumns(10);
 		
 		edad = new JTextField();
-		edad.setBounds(76, 151, 96, 18);
+		edad.setBounds(75, 211, 96, 18);
 		contentPane.add(edad);
 		edad.setColumns(10);
 		
 		sexo = new JTextField();
-		sexo.setBounds(76, 179, 96, 18);
+		sexo.setBounds(75, 239, 96, 18);
 		contentPane.add(sexo);
 		sexo.setColumns(10);
 		
 		peso = new JTextField();
-		peso.setBounds(254, 123, 96, 18);
+		peso.setBounds(253, 210, 96, 18);
 		contentPane.add(peso);
 		peso.setColumns(10);
 		
 		altura = new JTextField();
-		altura.setBounds(254, 169, 96, 18);
+		altura.setBounds(253, 239, 96, 18);
 		contentPane.add(altura);
 		altura.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Informacion Medica");
-		lblNewLabel_7.setBounds(28, 231, 111, 12);
+		lblNewLabel_7.setForeground(new Color(0, 64, 128));
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_7.setBounds(27, 296, 158, 17);
 		contentPane.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("¿Padece de Alergias?");
-		lblNewLabel_8.setBounds(28, 253, 111, 12);
+		lblNewLabel_8.setBounds(27, 323, 132, 12);
 		contentPane.add(lblNewLabel_8);
 		
 		alergias = new JTextField();
-		alergias.setBounds(139, 250, 96, 18);
+		alergias.setBounds(178, 323, 96, 18);
 		contentPane.add(alergias);
 		alergias.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("¿Padece alguna enfermedad crónica?");
-		lblNewLabel_9.setBounds(28, 275, 188, 12);
+		lblNewLabel_9.setBounds(27, 345, 216, 12);
 		contentPane.add(lblNewLabel_9);
 		
 		enfermedad = new JTextField();
-		enfermedad.setBounds(204, 272, 96, 18);
+		enfermedad.setBounds(253, 342, 96, 18);
 		contentPane.add(enfermedad);
 		enfermedad.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("¿Cuál?");
-		lblNewLabel_10.setBounds(28, 297, 44, 12);
+		lblNewLabel_10.setBounds(27, 367, 44, 12);
 		contentPane.add(lblNewLabel_10);
 		
 		cualEnfermedad = new JTextField();
-		cualEnfermedad.setBounds(64, 294, 96, 18);
+		cualEnfermedad.setBounds(89, 364, 96, 18);
 		contentPane.add(cualEnfermedad);
 		cualEnfermedad.setColumns(10);
 		
 		JLabel lblNewLabel_11 = new JLabel("Tipo de Sangre");
-		lblNewLabel_11.setBounds(28, 319, 111, 12);
+		lblNewLabel_11.setBounds(27, 395, 111, 12);
 		contentPane.add(lblNewLabel_11);
 		
 		Sangre = new JTextField();
-		Sangre.setBounds(107, 316, 96, 18);
+		Sangre.setBounds(127, 392, 96, 18);
 		contentPane.add(Sangre);
 		Sangre.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Padecimiento");
-		lblNewLabel_12.setBounds(28, 341, 76, 12);
+		lblNewLabel_12.setBounds(27, 423, 92, 12);
 		contentPane.add(lblNewLabel_12);
 		
 		Padecimiento = new JTextField();
-		Padecimiento.setBounds(107, 341, 96, 18);
+		Padecimiento.setBounds(127, 420, 96, 18);
 		contentPane.add(Padecimiento);
 		Padecimiento.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("Información de contacto");
-		lblNewLabel_13.setBounds(28, 390, 111, 12);
+		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_13.setForeground(new Color(0, 64, 128));
+		lblNewLabel_13.setBounds(27, 493, 289, 19);
 		contentPane.add(lblNewLabel_13);
 		
 		JLabel lblNewLabel_14 = new JLabel("Domicilio");
-		lblNewLabel_14.setBounds(28, 412, 44, 12);
+		lblNewLabel_14.setBounds(27, 521, 76, 12);
 		contentPane.add(lblNewLabel_14);
 		
 		JLabel lblNewLabel_15 = new JLabel("Telefono");
-		lblNewLabel_15.setBounds(28, 437, 44, 12);
+		lblNewLabel_15.setBounds(27, 546, 76, 12);
 		contentPane.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("");
@@ -177,49 +188,82 @@ public class VentanaExpedientes extends JFrame {
 		contentPane.add(lblNewLabel_16);
 		
 		JLabel lblNewLabel_17 = new JLabel("Estomatologo");
-		lblNewLabel_17.setBounds(28, 44, 92, 12);
+		lblNewLabel_17.setBounds(27, 73, 92, 12);
 		contentPane.add(lblNewLabel_17);
 		
-		JLabel lblNewLabel_18 = new JLabel("Fecha de inicio");
-		lblNewLabel_18.setBounds(28, 62, 76, 22);
+		JLabel lblNewLabel_18 = new JLabel("Fecha de\r\n inicio");
+		lblNewLabel_18.setBounds(27, 100, 111, 19);
 		contentPane.add(lblNewLabel_18);
 		
 		estomatologo = new JTextField();
-		estomatologo.setBounds(107, 43, 96, 18);
+		estomatologo.setBounds(119, 72, 96, 18);
 		contentPane.add(estomatologo);
 		estomatologo.setColumns(10);
 		
 		fecha = new JTextField();
-		fecha.setBounds(107, 66, 96, 18);
+		fecha.setBounds(147, 100, 96, 18);
 		contentPane.add(fecha);
 		fecha.setColumns(10);
 		
 		Domicilio = new JTextField();
-		Domicilio.setBounds(76, 409, 96, 18);
+		Domicilio.setBounds(119, 518, 96, 18);
 		contentPane.add(Domicilio);
 		Domicilio.setColumns(10);
 		
 		Telefono = new JTextField();
-		Telefono.setBounds(76, 434, 96, 18);
+		Telefono.setBounds(119, 543, 96, 18);
 		contentPane.add(Telefono);
 		Telefono.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Estoma=estomatologo.getText();
-				String nom=nombre.getText();
-				int Ed=Integer.parseInt(edad.getText());
-				//char s=((CharSequence) sexo).charAt(sexo.getLength-1);
-				int alt=Integer.parseInt(altura.getText());
-				int pe=Integer.parseInt(peso.getText());
-				String ale=alergias.getText();
-				//char enf=
 				
+				try {
+				String estoma = estomatologo.getText();
+	            String nom = nombre.getText();
+	            String ale = alergias.getText();
+	            String cualEnf = cualEnfermedad.getText();
+	            String san = Sangre.getText();
+	            String pad = Padecimiento.getText();
+	            String fech = fecha.getText();
+	            String dom = Domicilio.getText();
+	            String tel = Telefono.getText();
+	            
+	            
+	            int ed = Integer.parseInt(edad.getText());
+	            int alt = Integer.parseInt(altura.getText());
+	            int pe = Integer.parseInt(peso.getText());
+	            
+	            char sx = (sexo.getText().length() > 0) ? sexo.getText().charAt(0) : ' ';
+	            char enf = (enfermedad.getText().length() > 0) ? enfermedad.getText().charAt(0) : ' ';
+	            
+	            Expedientes nuevoEX= new Expedientes(estoma, nom, ed, sx,  alt, pe, ale,
+	        			enf, cualEnf, san, pad, fech, dom, tel);
+	            
+	            ArchivoExpedientes.guardarExpediente(nuevoEX);
+	            JOptionPane.showMessageDialog(null, "Guardado", "Guardar", 2);;
+				} catch (NumberFormatException Ex) {
+	            	JOptionPane.showMessageDialog(null, "Ingresa un numero correcto para edad, altura y peso", "Numeros", 1);
+	            }
+			}
+			
+		
+		});
+		btnNewButton.setBounds(292, 585, 84, 20);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Leer expediente");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Expedientes> expPrueba=ArchivoExpedientes.leerTodos();
+				for (Expedientes u: expPrueba) {
+					System.out.println(u);
+				}
 			}
 		});
-		btnNewButton.setBounds(266, 433, 84, 20);
-		contentPane.add(btnNewButton);
+		btnNewButton_1.setBounds(292, 560, 84, 20);
+		contentPane.add(btnNewButton_1);
 
 	}
 }

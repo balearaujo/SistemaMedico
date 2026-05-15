@@ -1,7 +1,7 @@
 package expedientes;
 
 import java.awt.EventQueue;
-
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +24,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class VentanaBusqueda extends JFrame {
 
@@ -31,6 +33,7 @@ public class VentanaBusqueda extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -74,25 +77,25 @@ public class VentanaBusqueda extends JFrame {
 		
 		JRadioButton docBtn = new JRadioButton("Doctor");
 		buttonGroup.add(docBtn);
-		docBtn.setBounds(100, 178, 102, 20);
+		docBtn.setBounds(94, 99, 102, 20);
 		contentPane.add(docBtn);
 		
 		JRadioButton PacBtn = new JRadioButton("Paciente");
 		buttonGroup.add(PacBtn);
-		PacBtn.setBounds(100, 238, 102, 20);
+		PacBtn.setBounds(94, 136, 102, 20);
 		contentPane.add(PacBtn);
 		
 		JRadioButton AgeBtn = new JRadioButton("Edad");
 		buttonGroup.add(AgeBtn);
-		AgeBtn.setBounds(100, 296, 102, 20);
+		AgeBtn.setBounds(94, 173, 102, 20);
 		contentPane.add(AgeBtn);
 		
 		JRadioButton SxBtn = new JRadioButton("sexo");
-		SxBtn.setBounds(434, 200, 102, 20);
+		SxBtn.setBounds(428, 121, 102, 20);
 		contentPane.add(SxBtn);
 		
 		JRadioButton PadBtn = new JRadioButton("Padecimiento");
-		PadBtn.setBounds(434, 272, 102, 20);
+		PadBtn.setBounds(428, 161, 102, 20);
 		contentPane.add(PadBtn);
 		
 		JButton btnNewButton = new JButton("Buscar");
@@ -100,6 +103,7 @@ public class VentanaBusqueda extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean encontrado=false;
 				ArrayList<Expedientes>expBusq = ArchivoExpedientes.leerTodos();
+				ArrayList<Expedientes>resultados=new ArrayList<>();
 				
 				for (Expedientes e1: expBusq) {
 					if (docBtn.isSelected()) {
@@ -133,19 +137,40 @@ public class VentanaBusqueda extends JFrame {
 							encontrado=true;
 						}
 					}
+					
+					if (encontrado) {
+						System.out.print("Si encontramos el Expediente (Esta es una prueba) ");
+						resultados.add(e1);
+					} 
 				}
-				if (encontrado) {
-					System.out.print("Si encontramos el Expediente (Esta es una prueba) ");
+				if (!encontrado) {
+					JOptionPane.showMessageDialog(null, "No esta bajo este filtro", "No encontrado", 1);
 				} else {
-					System.out.print("No esta bajo este filtro");
+					mostrarEnTabla(resultados);
 				}
-				
-			
 			}
 		});
 		
-		btnNewButton.setBounds(546, 371, 84, 20);
+		btnNewButton.setBounds(567, 197, 84, 20);
 		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(94, 280, 551, 321);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
+	}
+	
+	public void mostrarEnTabla(ArrayList<Expedientes>resultados) {
+		String COL[]={"Doctor", "Paciente", "Edad", "Sexo", "Padecimiento"};
+		DefaultTableModel modelo= new DefaultTableModel(COL, 0);
+		
+		for (Expedientes e: resultados) {
+			Object[] fila= {e.getEstomatologo(), e.getNombre(), e.getEdad(), e.getSexo(), e.getPadecimiento()};
+			modelo.addRow(fila);
+		}
+		table.setModel(modelo);
 	}
 }

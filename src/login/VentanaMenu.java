@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import expedientes.VentanaBusqueda;
 import expedientes.VentanaExpedientes;
 
 public class VentanaMenu extends JFrame {
@@ -60,6 +61,9 @@ public class VentanaMenu extends JFrame {
 		JButton btnNewButton_1 = new JButton("Buscar Expediente");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VentanaBusqueda buscarV=new VentanaBusqueda();
+				buscarV.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(232, 210, 257, 65);

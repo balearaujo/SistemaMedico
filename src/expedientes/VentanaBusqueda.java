@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Color;
+import java.awt.Font;
 
 public class VentanaBusqueda extends JFrame {
 
@@ -58,44 +60,58 @@ public class VentanaBusqueda extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 722, 673);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(248, 248, 248));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(151, 41, 500, 39);
+		textField.setBounds(150, 78, 491, 39);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Lupita imagen");
-		lblNewLabel.setBounds(50, 54, 91, 12);
+		lblNewLabel.setBounds(49, 77, 91, 12);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Buscador");
-		lblNewLabel_1.setBounds(151, 19, 71, 12);
+		lblNewLabel_1.setForeground(new Color(0, 64, 128));
+		lblNewLabel_1.setBackground(new Color(0, 64, 128));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setBounds(150, 47, 108, 20);
 		contentPane.add(lblNewLabel_1);
 		
 		JRadioButton docBtn = new JRadioButton("Doctor");
+		docBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		docBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(docBtn);
-		docBtn.setBounds(94, 99, 102, 20);
+		docBtn.setBounds(150, 148, 102, 20);
 		contentPane.add(docBtn);
 		
 		JRadioButton PacBtn = new JRadioButton("Paciente");
+		PacBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		PacBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(PacBtn);
-		PacBtn.setBounds(94, 136, 102, 20);
+		PacBtn.setBounds(150, 185, 102, 20);
 		contentPane.add(PacBtn);
 		
 		JRadioButton AgeBtn = new JRadioButton("Edad");
+		AgeBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		AgeBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(AgeBtn);
-		AgeBtn.setBounds(94, 173, 102, 20);
+		AgeBtn.setBounds(249, 148, 102, 20);
 		contentPane.add(AgeBtn);
 		
 		JRadioButton SxBtn = new JRadioButton("sexo");
-		SxBtn.setBounds(428, 121, 102, 20);
+		SxBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		SxBtn.setBackground(new Color(248, 248, 248));
+		SxBtn.setBounds(249, 185, 102, 20);
 		contentPane.add(SxBtn);
 		
 		JRadioButton PadBtn = new JRadioButton("Padecimiento");
-		PadBtn.setBounds(428, 161, 102, 20);
+		PadBtn.setBackground(new Color(248, 248, 248));
+		PadBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		PadBtn.setBounds(353, 148, 102, 20);
 		contentPane.add(PadBtn);
 		
 		JButton btnNewButton = new JButton("Buscar");
@@ -151,7 +167,7 @@ public class VentanaBusqueda extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(567, 197, 84, 20);
+		btnNewButton.setBounds(557, 249, 84, 20);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();

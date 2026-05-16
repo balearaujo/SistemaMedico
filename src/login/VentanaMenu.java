@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import expedientes.VentanaBusqueda;
 import expedientes.VentanaExpedientes;
+import expedientes.ventana_calendario;
 
 public class VentanaMenu extends JFrame {
 
@@ -76,6 +77,10 @@ public class VentanaMenu extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ventana_calendario citaV=new ventana_calendario();
+				citaV.setVisible(true);
+				dispose();
+				
 			}
 		});
 		btnNewButton_2.setBounds(232, 298, 257, 65);

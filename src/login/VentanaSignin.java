@@ -45,35 +45,38 @@ public class VentanaSignin extends JFrame {
 	 */
 	public VentanaSignin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 464, 338);
+		setBounds(100, 100, 465, 339);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(236, 244, 253));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("SIGN-UP");
-		lblNewLabel.setBounds(178, 50, 101, 32);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		JLabel lblNewLabel = new JLabel("Ingresar\r\n");
+		lblNewLabel.setBounds(177, 35, 114, 51);
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 26));
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		contentPane.add(lblNewLabel);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(178, 128, 101, 18);
+		textPane.setBounds(161, 109, 152, 22);
 		contentPane.add(textPane);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(178, 192, 101, 18);
+		passwordField.setBounds(161, 167, 152, 22);
 		contentPane.add(passwordField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(61, 128, 78, 12);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(59, 114, 44, 12);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Contraseña");
-		lblNewLabel_2.setBounds(61, 195, 78, 12);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(59, 171, 92, 12);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Crear User");
+		JButton btnNewButton = new JButton("Registrar Usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuario nuevo= new Usuario(textPane.getText(), passwordField.getText());
@@ -82,7 +85,7 @@ public class VentanaSignin extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(303, 245, 84, 20);
+		btnNewButton.setBounds(297, 239, 124, 20);
 		contentPane.add(btnNewButton);
 
 	}

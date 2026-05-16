@@ -43,11 +43,13 @@ public class VentanaMenu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 733, 460);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(236, 244, 253));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Nuevo Expediente");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaExpedientes expediente=new VentanaExpedientes();
@@ -59,6 +61,7 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Buscar Expediente");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaBusqueda buscarV=new VentanaBusqueda();
@@ -70,6 +73,7 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Generar Citas");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -77,10 +81,10 @@ public class VentanaMenu extends JFrame {
 		btnNewButton_2.setBounds(232, 298, 257, 65);
 		contentPane.add(btnNewButton_2);
 		
-		JLabel lblNewLabel = new JLabel("Inicio");
+		JLabel lblNewLabel = new JLabel("INICIO");
 		lblNewLabel.setForeground(new Color(0, 64, 128));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNewLabel.setBounds(327, 36, 99, 65);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblNewLabel.setBounds(306, 51, 126, 65);
 		contentPane.add(lblNewLabel);
 
 	}

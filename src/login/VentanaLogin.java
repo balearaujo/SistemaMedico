@@ -46,32 +46,35 @@ public class VentanaLogin extends JFrame {
 	 */
 	public VentanaLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 433, 330);
+		setBounds(100, 100, 465, 339);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(236, 244, 253));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JTextArea nombre = new JTextArea();
-		nombre.setBounds(161, 115, 152, 22);
+		nombre.setBounds(161, 109, 152, 22);
 		contentPane.add(nombre);
 		
 		contrasenia = new JPasswordField();
-		contrasenia.setBounds(161, 184, 152, 22);
+		contrasenia.setBounds(161, 167, 152, 22);
 		contentPane.add(contrasenia);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setBounds(79, 121, 44, 12);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(59, 114, 44, 12);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña");
-		lblNewLabel_1.setBounds(79, 188, 60, 12);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(59, 171, 92, 12);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Log-In");
+		JLabel lblNewLabel_2 = new JLabel("Ingresar");
 		lblNewLabel_2.setForeground(new Color(0, 64, 128));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(194, 42, 60, 51);
+		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD, 26));
+		lblNewLabel_2.setBounds(180, 35, 109, 51);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Enviar");
@@ -94,7 +97,7 @@ public class VentanaLogin extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(277, 241, 84, 20);
+		btnNewButton.setBounds(316, 241, 84, 20);
 		contentPane.add(btnNewButton);
 
 	}

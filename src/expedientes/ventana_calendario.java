@@ -55,24 +55,28 @@ public class ventana_calendario extends JFrame {
 					int mes=calendario.getMonthChooser().getMonth()+1;
 					int anio=calendario.getYearChooser().getYear();
 					
-					java.util.ArrayList<Cita> todaslasCitas=ArchivoCitas.leerTodas();
-					boolean ocupado=false;
+					String[]horarios= {"10:00 AM","11:00 AM", "12:00 PM", "01:00 PM","02:00 PM", "03:00 PM"};
+					String horaSelecc= (String) JOptionPane.showInputDialog(null,"Seleccione un horario para el "
+					+dia+"/"+mes+"/"+anio,"Horarios", JOptionPane.QUESTION_MESSAGE,null,horarios,horarios[0]);
+							
+					if (horaSelecc !=null) {
+						java.util.ArrayList<Cita> todaslasCitas=ArchivoCitas.leerTodas();
+						boolean ocupado=false;
 					for(Cita c:todaslasCitas) {
-						if(c.getDia()==dia && c.getMes()==mes && c.getAnio()==anio) {
+						if(c.getDia()==dia && c.getMes()==mes && c.getAnio()==anio && c.getHora().equals(horaSelecc)){
 							ocupado=true;
+							break;
 						}
 					}
 					
 					if (ocupado) {
-						JOptionPane.showMessageDialog(null,"Ya tiene una cita para este dia","Error de cita",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null,"El horario "+horaSelecc+" ya esta ocupado","Error de cita",JOptionPane.WARNING_MESSAGE);
 					}else {
-						Cita nueva=new Cita(dia,mes,anio);
-					
-					ArchivoCitas.guardarCita(nueva);
-					JOptionPane.showMessageDialog(null,"Fecha de cita:"+dia+"/"+mes+"/"+anio,"Confirmación de cita", JOptionPane.INFORMATION_MESSAGE);
+						Cita nueva=new Cita(dia,mes,anio, horaSelecc);
+						ArchivoCitas.guardarCita(nueva);
+					JOptionPane.showMessageDialog(null,"Fecha de cita:"+dia+"/"+mes+"/"+anio+" Hora:" +horaSelecc,"Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
 				}
-				
-				
+					}
 			}
 		});
 		

@@ -6,11 +6,13 @@ public class Cita implements Serializable {
 	private int dia;
 	private int mes;
 	private int anio;
+	private String hora;
 	
-	public Cita(int dia, int mes, int anio) {
+	public Cita(int dia, int mes, int anio, String hora) {
 		this.dia=dia;
 		this.mes=mes;
 		this.anio=anio;
+		this.hora=hora;
 	}
 	public int getDia() {
 		return dia;
@@ -20,5 +22,8 @@ public class Cita implements Serializable {
 	}
 	public int getAnio() {
 		return anio;
+	}
+	public String getHora() {
+		return hora;
 	}
 }

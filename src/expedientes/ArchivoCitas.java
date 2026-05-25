@@ -9,6 +9,7 @@ public class ArchivoCitas {
 	public static void guardarCita(Cita nuevaCita) {
 		ArrayList<Cita> lista= leerTodas();
 		lista.add(nuevaCita);
+		
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(RUTA_ARCH_CITAS))){
 			oos.writeObject(lista);
 			} 
@@ -16,9 +17,12 @@ public class ArchivoCitas {
 			e.printStackTrace();
 		}
 	}
+	@SuppressWarnings ("Unchecked")
 	public static ArrayList<Cita>leerTodas(){
 		File file=new File (RUTA_ARCH_CITAS);
-		if(!file.exists()) return new ArrayList<>();
+		if(!file.exists()||file.length() ==0) {
+			return new ArrayList<>();
+		}
 		
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA_ARCH_CITAS))){
 			return (ArrayList<Cita>) ois.readObject();

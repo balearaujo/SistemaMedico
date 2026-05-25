@@ -52,8 +52,8 @@ public class VentanaSignin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ingresar\r\n");
-		lblNewLabel.setBounds(177, 35, 114, 51);
+		JLabel lblNewLabel = new JLabel("Registar");
+		lblNewLabel.setBounds(177, 35, 104, 51);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 26));
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		contentPane.add(lblNewLabel);
@@ -87,6 +87,17 @@ public class VentanaSignin extends JFrame {
 		});
 		btnNewButton.setBounds(297, 239, 124, 20);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Ingresar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLogin login= new VentanaLogin();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(59, 238, 89, 23);
+		contentPane.add(btnNewButton_1);
 
 	}
 }

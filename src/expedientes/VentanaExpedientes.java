@@ -4,6 +4,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.VentanaMenu;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
@@ -265,7 +268,7 @@ public class VentanaExpedientes extends JFrame {
 			
 		
 		});
-		btnNewButton.setBounds(268, 589, 84, 20);
+		btnNewButton.setBounds(184, 589, 84, 20);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Leer expediente");
@@ -277,8 +280,19 @@ public class VentanaExpedientes extends JFrame {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(75, 589, 124, 20);
+		btnNewButton_1.setBounds(27, 589, 124, 20);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Regresar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaMenu menu= new VentanaMenu();
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_2.setBounds(308, 588, 89, 23);
+		contentPane.add(btnNewButton_2);
 
 	}
 }

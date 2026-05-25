@@ -167,15 +167,26 @@ public class VentanaBusqueda extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(557, 249, 84, 20);
+		btnNewButton.setBounds(357, 186, 84, 20);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(94, 280, 551, 321);
+		scrollPane.setBounds(90, 228, 551, 321);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaMenu menu= new VentanaMenu();
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(290, 577, 89, 23);
+		contentPane.add(btnNewButton_1);
 
 	}
 	

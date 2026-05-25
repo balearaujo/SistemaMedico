@@ -99,6 +99,17 @@ public class VentanaLogin extends JFrame {
 		});
 		btnNewButton.setBounds(316, 241, 84, 20);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Registrar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaSignin registro= new VentanaSignin();
+				registro.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(62, 240, 89, 23);
+		contentPane.add(btnNewButton_1);
 
 	}
 }

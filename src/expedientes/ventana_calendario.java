@@ -1,6 +1,9 @@
 package expedientes;
 
 import com.toedter.calendar.JCalendar;
+
+import login.VentanaMenu;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -75,6 +78,16 @@ public class ventana_calendario extends JFrame {
 		
 		panelBoton.add(btnNewButton);
 		contentPane.add(panelBoton, BorderLayout.SOUTH);
+		
+		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaMenu menu= new VentanaMenu();
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		panelBoton.add(btnNewButton_1);
 		
 		
 		

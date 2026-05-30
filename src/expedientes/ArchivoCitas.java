@@ -1,6 +1,8 @@
 package expedientes;
 import java.io.*;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 
 public class ArchivoCitas {
@@ -29,6 +31,34 @@ public class ArchivoCitas {
 		} catch (Exception e) {
 			return new ArrayList<>();
 	}
+}
+
+	public static void generarTicket(Cita cita) {
+		String horaLimpia= cita.getHora().replace(":","-").replace(" ","-");
+		String nombreArchivo= "Ticket_"+cita.getDia()+"_"+cita.getMes()+"_"+horaLimpia+".txt";
+	
+	try (PrintWriter writer = new PrintWriter(new FileWriter (nombreArchivo))){
+		writer.println("***********************************");
+		writer.println("              MEDIPRO              ");
+		writer.println("          TICKET DE CITA           ");
+		writer.println("***********************************");
+		writer.println("Fecha: "+cita.getDia()+"/"+cita.getMes()+"/"+cita.getAnio());
+		writer.println("Hora: "+cita.getHora());
+		writer.println("***********************************");
+		writer.println(" Favor de llegar 10 minutos antes. ");
+		writer.println("Gracias por agendar con nosotros :)");
+		writer.println("***********************************");
+		System.out.println("Ticket guardado"+nombreArchivo);
+		if (java.awt.Desktop.isDesktopSupported()) {
+			java.awt.Desktop.getDesktop().open(new java.io.File (nombreArchivo));
+		}
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
+	}
 	
 }
-}
+
+
+
+

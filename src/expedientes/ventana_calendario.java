@@ -74,7 +74,8 @@ public class ventana_calendario extends JFrame {
 					}else {
 						Cita nueva=new Cita(dia,mes,anio, horaSelecc);
 						ArchivoCitas.guardarCita(nueva);
-					JOptionPane.showMessageDialog(null,"Fecha de cita:"+dia+"/"+mes+"/"+anio+" Hora:" +horaSelecc,"Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
+						ArchivoCitas.generarTicket(nueva);
+					JOptionPane.showMessageDialog(null,"Fecha de cita:"+dia+"/"+mes+"/"+anio+"\n\n Hora:" +horaSelecc+"\n\n¡Ticket generado!","Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
 				}
 					}
 			}
@@ -92,11 +93,6 @@ public class ventana_calendario extends JFrame {
 			}
 		});
 		panelBoton.add(btnNewButton_1);
-		
-		
-		
-	       
-  
 	}
 
 }

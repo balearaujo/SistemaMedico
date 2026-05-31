@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class VentanaExpedientes extends JFrame {
 
@@ -234,6 +235,7 @@ public class VentanaExpedientes extends JFrame {
 		Telefono.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Guardar");
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -272,6 +274,7 @@ public class VentanaExpedientes extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Leer expediente");
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Expedientes> expPrueba=ArchivoExpedientes.leerTodos();
@@ -284,6 +287,7 @@ public class VentanaExpedientes extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Regresar");
+		btnNewButton_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMenu menu= new VentanaMenu();
@@ -294,5 +298,7 @@ public class VentanaExpedientes extends JFrame {
 		btnNewButton_2.setBounds(308, 588, 89, 23);
 		contentPane.add(btnNewButton_2);
 
+		
+		
 	}
 }

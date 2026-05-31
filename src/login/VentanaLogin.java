@@ -78,17 +78,21 @@ public class VentanaLogin extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Enviar");
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Usuario>usuarios = archivousuarios.leerTodos();
-				boolean encontrado=false;
+				
+				Usuario usuarioEncontrado=null;
 				for (Usuario u: usuarios) {
-					if (u.getUser().equals(nombre.getText())&& u.getPswd().equals(contrasenia.getText())) {
-						encontrado=true;
+					if (u.getUser().equals(nombre.getText())&& u.getPswd().equals(new String(contrasenia.getPassword()))) {
+						usuarioEncontrado=u;
+						break;
 					}
 				}
-				if (encontrado) {
-					JOptionPane.showMessageDialog(null, "Estamos dentro", "LogIn", 1);
+				if (usuarioEncontrado !=null) {
+					String msj = "Bienvenid@ "+usuarioEncontrado.getUser()+ "\nEntrando como: "+usuarioEncontrado.getTipodeUsuario();
+					JOptionPane.showMessageDialog(null, msj, "LogIn", 1);
 					VentanaMenu menu=new VentanaMenu();
 					menu.setVisible(true);
 					dispose();
@@ -97,10 +101,11 @@ public class VentanaLogin extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(316, 241, 84, 20);
+		btnNewButton.setBounds(301, 240, 92, 22);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrar");
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaSignin registro= new VentanaSignin();

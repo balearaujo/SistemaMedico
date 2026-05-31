@@ -50,7 +50,8 @@ public class VentanaMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Nuevo Expediente");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaExpedientes expediente=new VentanaExpedientes();
@@ -62,7 +63,8 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Buscar Expediente");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnNewButton_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaBusqueda buscarV=new VentanaBusqueda();
@@ -74,7 +76,8 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Generar Citas");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnNewButton_2.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana_calendario citaV=new ventana_calendario();
@@ -88,8 +91,8 @@ public class VentanaMenu extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("INICIO");
 		lblNewLabel.setForeground(new Color(0, 64, 128));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblNewLabel.setBounds(306, 51, 126, 65);
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
+		lblNewLabel.setBounds(323, 46, 92, 65);
 		contentPane.add(lblNewLabel);
 
 	}

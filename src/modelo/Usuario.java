@@ -1,7 +1,8 @@
 package modelo;
 import java.io.Serializable;
 
-public class Usuario implements Serializable{
+//clase padre
+public abstract class Usuario implements Serializable{
 	private static final long serialVersionUID=1L;
 	private String user;
 	private String pswd;
@@ -11,6 +12,8 @@ public class Usuario implements Serializable{
 		this.user = user;
 		this.pswd = pswd;
 	}
+	
+	public abstract String getTipodeUsuario();
 
 	public String getUser() {
 		return user;

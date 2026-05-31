@@ -2,12 +2,16 @@ package login;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Usuario;
 import modelo.archivousuarios;
+import modelo.Odontologo;
+import modelo.Asistente;
+
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -18,11 +22,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JCheckBox;
+
+
 public class VentanaSignin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField passwordField;
+	private JCheckBox chckbxDoctor;
 
 	/**
 	 * Launch the application.
@@ -76,19 +84,37 @@ public class VentanaSignin extends JFrame {
 		lblNewLabel_2.setBounds(59, 171, 92, 12);
 		contentPane.add(lblNewLabel_2);
 		
+		JCheckBox chckbxDoctor = new JCheckBox("¿Es Odontólogo?");
+
+		chckbxDoctor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		chckbxDoctor.setBackground(new Color(233, 244, 253));
+		chckbxDoctor.setBounds(161, 196, 152, 23);
+		contentPane.add(chckbxDoctor);
+
+		
 		JButton btnNewButton = new JButton("Registrar Usuario");
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Usuario nuevo= new Usuario(textPane.getText(), passwordField.getText());
+				Usuario nuevo;
+				String user=textPane.getText();
+				String pswd= new String (passwordField.getPassword()); 
+				
+				if (chckbxDoctor.isSelected()) {
+					nuevo=new Odontologo(user,pswd);
+				}else {
+					nuevo=new Asistente(user,pswd);
+				}
 				archivousuarios.guardarUsuario(nuevo);
-				JOptionPane.showMessageDialog(null,  "Nuevo usuario guardado", "Nuevo doccc", 3);
+				JOptionPane.showMessageDialog(null,"Usuario "+nuevo.getTipodeUsuario()+" guardado", "Nuevo doccc", 3);
 				
 			}
 		});
-		btnNewButton.setBounds(297, 239, 124, 20);
+		btnNewButton.setBounds(257, 238, 152, 22);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ingresar");
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLogin login= new VentanaLogin();
@@ -98,6 +124,8 @@ public class VentanaSignin extends JFrame {
 		});
 		btnNewButton_1.setBounds(59, 238, 89, 23);
 		contentPane.add(btnNewButton_1);
-
+		
+	
 	}
+	
 }

@@ -36,7 +36,6 @@ public class VentanaBusqueda extends JFrame {
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
-	private ArrayList<Expedientes> resAct=new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -59,7 +58,7 @@ public class VentanaBusqueda extends JFrame {
 	 */
 	public VentanaBusqueda() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 722, 673);
+		setBounds(100, 100, 722, 664);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(248, 248, 248));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,47 +82,52 @@ public class VentanaBusqueda extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JRadioButton docBtn = new JRadioButton("Doctor");
+		docBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		docBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		docBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(docBtn);
-		docBtn.setBounds(150, 148, 102, 20);
+		docBtn.setBounds(150, 148, 91, 20);
 		contentPane.add(docBtn);
 		
 		JRadioButton PacBtn = new JRadioButton("Paciente");
+		PacBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		PacBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		PacBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(PacBtn);
-		PacBtn.setBounds(150, 185, 102, 20);
+		PacBtn.setBounds(150, 185, 91, 20);
 		contentPane.add(PacBtn);
 		
 		JRadioButton AgeBtn = new JRadioButton("Edad");
+		AgeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		AgeBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		AgeBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(AgeBtn);
 		AgeBtn.setBounds(249, 148, 102, 20);
 		contentPane.add(AgeBtn);
 		
-		JRadioButton SxBtn = new JRadioButton("sexo");
+		JRadioButton SxBtn = new JRadioButton("Sexo");
+		SxBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		SxBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		SxBtn.setBackground(new Color(248, 248, 248));
 		SxBtn.setBounds(249, 185, 102, 20);
 		contentPane.add(SxBtn);
 		
 		JRadioButton PadBtn = new JRadioButton("Padecimiento");
+		PadBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		PadBtn.setBackground(new Color(248, 248, 248));
 		PadBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		PadBtn.setBounds(353, 148, 102, 20);
 		contentPane.add(PadBtn);
 		
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean encontrado=false;
 				ArrayList<Expedientes>expBusq = ArchivoExpedientes.leerTodos();
 				ArrayList<Expedientes>resultados=new ArrayList<>();
 				
 				for (Expedientes e1: expBusq) {
-					boolean encontrado=false;
-					
 					if (docBtn.isSelected()) {
 						if (e1.getEstomatologo().equals(textField.getText())) {
 							encontrado=true;
@@ -161,7 +165,7 @@ public class VentanaBusqueda extends JFrame {
 						resultados.add(e1);
 					} 
 				}
-				if (resultados.isEmpty()) {
+				if (!encontrado) {
 					JOptionPane.showMessageDialog(null, "No esta bajo este filtro", "No encontrado", 1);
 				} else {
 					mostrarEnTabla(resultados);
@@ -173,26 +177,14 @@ public class VentanaBusqueda extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(90, 228, 551, 321);
+		scrollPane.setBounds(90, 228, 551, 292);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.addMouseListener(new java.awt.event.MouseAdapter(){
-			@Override
-			public void mouseClicked (java.awt.event.MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					int filaSeleccionada=table.getSelectedRow();
-					Expedientes ExpSeleccionado=resAct.get(filaSeleccionada);
-					
-					ExpedienteDetalles ExpedienteDets= new ExpedienteDetalles(ExpSeleccionado);
-					ExpedienteDets.setVisible(true);
-					dispose();
-				}
-			}
-		});
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMenu menu= new VentanaMenu();
@@ -200,20 +192,14 @@ public class VentanaBusqueda extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(290, 577, 89, 23);
+		btnNewButton_1.setBounds(249, 544, 123, 33);
 		contentPane.add(btnNewButton_1);
 
 	}
 	
 	public void mostrarEnTabla(ArrayList<Expedientes>resultados) {
-		this.resAct=resultados;
 		String COL[]={"Doctor", "Paciente", "Edad", "Sexo", "Padecimiento"};
-		DefaultTableModel modelo= new DefaultTableModel(COL, 0) {
-			@Override
-	        public boolean isCellEditable(int row, int column) {
-	            return false;
-	        }
-		};
+		DefaultTableModel modelo= new DefaultTableModel(COL, 0);
 		
 		for (Expedientes e: resultados) {
 			Object[] fila= {e.getEstomatologo(), e.getNombre(), e.getEdad(), e.getSexo(), e.getPadecimiento()};

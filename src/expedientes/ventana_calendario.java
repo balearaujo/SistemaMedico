@@ -49,6 +49,7 @@ public class ventana_calendario extends JFrame {
 		JPanel panelBoton=new JPanel();
 		
 		JButton btnNewButton = new JButton("Confirmar cita");
+		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					int dia=calendario.getDayChooser().getDay();
@@ -85,6 +86,7 @@ public class ventana_calendario extends JFrame {
 		contentPane.add(panelBoton, BorderLayout.SOUTH);
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMenu menu= new VentanaMenu();

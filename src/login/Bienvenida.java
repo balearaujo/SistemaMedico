@@ -33,6 +33,7 @@ public class Bienvenida extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.

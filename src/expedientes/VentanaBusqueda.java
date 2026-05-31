@@ -36,6 +36,7 @@ public class VentanaBusqueda extends JFrame {
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
+	private ArrayList<Expedientes> resAct=new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -117,11 +118,12 @@ public class VentanaBusqueda extends JFrame {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean encontrado=false;
 				ArrayList<Expedientes>expBusq = ArchivoExpedientes.leerTodos();
 				ArrayList<Expedientes>resultados=new ArrayList<>();
 				
 				for (Expedientes e1: expBusq) {
+					boolean encontrado=false;
+					
 					if (docBtn.isSelected()) {
 						if (e1.getEstomatologo().equals(textField.getText())) {
 							encontrado=true;
@@ -159,7 +161,7 @@ public class VentanaBusqueda extends JFrame {
 						resultados.add(e1);
 					} 
 				}
-				if (!encontrado) {
+				if (resultados.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "No esta bajo este filtro", "No encontrado", 1);
 				} else {
 					mostrarEnTabla(resultados);
@@ -176,6 +178,19 @@ public class VentanaBusqueda extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.addMouseListener(new java.awt.event.MouseAdapter(){
+			@Override
+			public void mouseClicked (java.awt.event.MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int filaSeleccionada=table.getSelectedRow();
+					Expedientes ExpSeleccionado=resAct.get(filaSeleccionada);
+					
+					ExpedienteDetalles ExpedienteDets= new ExpedienteDetalles(ExpSeleccionado);
+					ExpedienteDets.setVisible(true);
+					dispose();
+				}
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -191,8 +206,14 @@ public class VentanaBusqueda extends JFrame {
 	}
 	
 	public void mostrarEnTabla(ArrayList<Expedientes>resultados) {
+		this.resAct=resultados;
 		String COL[]={"Doctor", "Paciente", "Edad", "Sexo", "Padecimiento"};
-		DefaultTableModel modelo= new DefaultTableModel(COL, 0);
+		DefaultTableModel modelo= new DefaultTableModel(COL, 0) {
+			@Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+		};
 		
 		for (Expedientes e: resultados) {
 			Object[] fila= {e.getEstomatologo(), e.getNombre(), e.getEdad(), e.getSexo(), e.getPadecimiento()};

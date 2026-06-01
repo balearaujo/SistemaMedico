@@ -89,9 +89,6 @@ public class Bienvenida extends JFrame {
 			new VentanaSignin().setVisible(true);
 				dispose();
 		});
-		contentPane.add(btnNewButton_1);
-		
-	
-
+		contentPane.add(btnNewButton_1);	
 	}
 }

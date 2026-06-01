@@ -106,7 +106,7 @@ public class VentanaSignin extends JFrame {
 					nuevo=new Asistente(user,pswd);
 				}
 				archivousuarios.guardarUsuario(nuevo);
-				JOptionPane.showMessageDialog(null,"Usuario "+nuevo.getTipodeUsuario()+" guardado", "Nuevo doccc", 3);
+				JOptionPane.showMessageDialog(null,"Usuario "+nuevo.getTipodeUsuario()+" guardado!", "Nuevo doccc", 3);
 				
 			}
 		});

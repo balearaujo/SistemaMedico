@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -36,7 +37,7 @@ public class VentanaBusqueda extends JFrame {
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
-
+	private ArrayList<Expedientes> resAct=new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -70,9 +71,29 @@ public class VentanaBusqueda extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Lupita imagen");
-		lblNewLabel.setBounds(49, 77, 91, 12);
-		contentPane.add(lblNewLabel);
+		JLabel Imagen = new JLabel("");
+		Imagen.setBounds(86, 77, 69, 40);
+		Imagen.setOpaque(false);
+		try {
+			java.net.URL imURL= getClass().getResource("/Imagenes/lupita.png");
+			if (imURL != null) {
+				ImageIcon icon=new ImageIcon(imURL);
+				
+				java.awt.Image imgEscalada = icon.getImage().getScaledInstance(
+			            Imagen.getWidth(), 
+			            Imagen.getHeight(), 
+			            java.awt.Image.SCALE_SMOOTH 
+			        );
+				ImageIcon icoEscalado = new ImageIcon(imgEscalada);
+		        Imagen.setIcon(icoEscalado);
+			} else {
+				System.out.printf("Ruta no encontrada");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error al cargar la imagen: " + e.getMessage());
+		}
+		contentPane.add(Imagen);
 		
 		JLabel lblNewLabel_1 = new JLabel("Buscador");
 		lblNewLabel_1.setForeground(new Color(0, 64, 128));
@@ -109,6 +130,7 @@ public class VentanaBusqueda extends JFrame {
 		SxBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		SxBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		SxBtn.setBackground(new Color(248, 248, 248));
+		buttonGroup.add(SxBtn);
 		SxBtn.setBounds(249, 185, 102, 20);
 		contentPane.add(SxBtn);
 		
@@ -116,6 +138,7 @@ public class VentanaBusqueda extends JFrame {
 		PadBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		PadBtn.setBackground(new Color(248, 248, 248));
 		PadBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		buttonGroup.add(PadBtn);
 		PadBtn.setBounds(353, 148, 102, 20);
 		contentPane.add(PadBtn);
 		
@@ -123,11 +146,11 @@ public class VentanaBusqueda extends JFrame {
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean encontrado=false;
 				ArrayList<Expedientes>expBusq = ArchivoExpedientes.leerTodos();
 				ArrayList<Expedientes>resultados=new ArrayList<>();
 				
 				for (Expedientes e1: expBusq) {
+					boolean encontrado=false;
 					if (docBtn.isSelected()) {
 						if (e1.getEstomatologo().equals(textField.getText())) {
 							encontrado=true;
@@ -165,7 +188,7 @@ public class VentanaBusqueda extends JFrame {
 						resultados.add(e1);
 					} 
 				}
-				if (!encontrado) {
+				if (resultados.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "No esta bajo este filtro", "No encontrado", 1);
 				} else {
 					mostrarEnTabla(resultados);
@@ -182,6 +205,19 @@ public class VentanaBusqueda extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.addMouseListener(new java.awt.event.MouseAdapter(){
+			@Override
+			public void mouseClicked (java.awt.event.MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int filaSeleccionada=table.getSelectedRow();
+					Expedientes ExpSeleccionado=resAct.get(filaSeleccionada);
+					
+					ExpedienteDetalles ExpedienteDets= new ExpedienteDetalles(ExpSeleccionado);
+					ExpedienteDets.setVisible(true);
+					dispose();
+				}
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
 		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -198,9 +234,15 @@ public class VentanaBusqueda extends JFrame {
 	}
 	
 	public void mostrarEnTabla(ArrayList<Expedientes>resultados) {
-		String COL[]={"Doctor", "Paciente", "Edad", "Sexo", "Padecimiento"};
-		DefaultTableModel modelo= new DefaultTableModel(COL, 0);
+		this.resAct = resultados;
 		
+		String COL[]={"Doctor", "Paciente", "Edad", "Sexo", "Padecimiento"};
+		DefaultTableModel modelo= new DefaultTableModel(COL, 0) {
+			@Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+		};
 		for (Expedientes e: resultados) {
 			Object[] fila= {e.getEstomatologo(), e.getNombre(), e.getEdad(), e.getSexo(), e.getPadecimiento()};
 			modelo.addRow(fila);

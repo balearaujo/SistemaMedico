@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -67,13 +68,15 @@ public class Bienvenida extends JFrame {
 		JLabel lblNewLabel = new JLabel("MediPro",JLabel.CENTER);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 44));
 		lblNewLabel.setForeground(new Color(30, 58, 138));
-		lblNewLabel.setBounds(222, 80, 300, 80);
+		lblNewLabel.setBounds(255, 65, 300, 88);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Iniciar Sesión");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 87, 130));
 
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnNewButton.setBounds(243, 190, 250, 50);
 		btnNewButton.addActionListener(e -> {
 			new VentanaLogin().setVisible(true);
@@ -82,7 +85,9 @@ public class Bienvenida extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrarse");
-		btnNewButton_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 87, 130));
+		btnNewButton_1.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnNewButton_1.setBounds(243, 270, 250, 50);
 		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(e -> {
@@ -90,5 +95,36 @@ public class Bienvenida extends JFrame {
 				dispose();
 		});
 		contentPane.add(btnNewButton_1);	
+		
+		JLabel lblNewLabel_1 = new JLabel("Sistema de gestión médico");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(292, 142, 188, 26);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel Imagen = new JLabel("");
+		Imagen.setBounds(260, 90, 49, 43);
+		Imagen.setOpaque(false);
+		try {
+			java.net.URL imURL= getClass().getResource("/Imagenes/dienteUno.png");
+			if (imURL != null) {
+				ImageIcon icon=new ImageIcon(imURL);
+				
+				java.awt.Image imgEscalada = icon.getImage().getScaledInstance(
+			            Imagen.getWidth(), 
+			            Imagen.getHeight(), 
+			            java.awt.Image.SCALE_SMOOTH 
+			        );
+				ImageIcon icoEscalado = new ImageIcon(imgEscalada);
+		        Imagen.setIcon(icoEscalado);
+			} else {
+				System.out.printf("Ruta no encontrada");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error al cargar la imagen: " + e.getMessage());
+		}
+		contentPane.add(Imagen);
+		
+		contentPane.add(lblNewLabel_1);
 	}
 }

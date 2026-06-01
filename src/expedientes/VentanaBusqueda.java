@@ -2,6 +2,9 @@ package expedientes;
 
 import java.awt.EventQueue;
 import javax.swing.table.DefaultTableModel;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -44,6 +48,17 @@ public class VentanaBusqueda extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try {
+		        	FlatLightLaf.setup();
+		           
+		            UIManager.put("Button.arc", 15); // Botones redondeados
+		            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+		            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+		            
+		        } catch (Exception e) {
+		            System.err.println("Error al aplicar FlatLaf");
+		        }
+				
 				try {
 					VentanaBusqueda frame = new VentanaBusqueda();
 					frame.setVisible(true);
@@ -107,7 +122,7 @@ public class VentanaBusqueda extends JFrame {
 		docBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		docBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(docBtn);
-		docBtn.setBounds(150, 148, 91, 20);
+		docBtn.setBounds(90, 148, 91, 20);
 		contentPane.add(docBtn);
 		
 		JRadioButton PacBtn = new JRadioButton("Paciente");
@@ -115,7 +130,7 @@ public class VentanaBusqueda extends JFrame {
 		PacBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		PacBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(PacBtn);
-		PacBtn.setBounds(150, 185, 91, 20);
+		PacBtn.setBounds(90, 185, 91, 20);
 		contentPane.add(PacBtn);
 		
 		JRadioButton AgeBtn = new JRadioButton("Edad");
@@ -123,7 +138,7 @@ public class VentanaBusqueda extends JFrame {
 		AgeBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		AgeBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(AgeBtn);
-		AgeBtn.setBounds(249, 148, 102, 20);
+		AgeBtn.setBounds(321, 148, 102, 20);
 		contentPane.add(AgeBtn);
 		
 		JRadioButton SxBtn = new JRadioButton("Sexo");
@@ -131,7 +146,7 @@ public class VentanaBusqueda extends JFrame {
 		SxBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		SxBtn.setBackground(new Color(248, 248, 248));
 		buttonGroup.add(SxBtn);
-		SxBtn.setBounds(249, 185, 102, 20);
+		SxBtn.setBounds(321, 185, 102, 20);
 		contentPane.add(SxBtn);
 		
 		JRadioButton PadBtn = new JRadioButton("Padecimiento");
@@ -139,10 +154,13 @@ public class VentanaBusqueda extends JFrame {
 		PadBtn.setBackground(new Color(248, 248, 248));
 		PadBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		buttonGroup.add(PadBtn);
-		PadBtn.setBounds(353, 148, 102, 20);
+		PadBtn.setBounds(539, 148, 102, 20);
 		contentPane.add(PadBtn);
 		
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 87, 130));
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,7 +214,7 @@ public class VentanaBusqueda extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(357, 186, 84, 20);
+		btnNewButton.setBounds(545, 186, 84, 20);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -220,6 +238,9 @@ public class VentanaBusqueda extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 87, 130));
 		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -228,7 +249,7 @@ public class VentanaBusqueda extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(249, 544, 123, 33);
+		btnNewButton_1.setBounds(318, 545, 123, 33);
 		contentPane.add(btnNewButton_1);
 
 	}

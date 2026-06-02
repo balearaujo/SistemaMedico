@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import modelo.Usuario;
 import modelo.archivousuarios;
 import modelo.Odontologo;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -38,6 +41,17 @@ public class VentanaSignin extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				 try {
+			        	FlatLightLaf.setup();
+			           
+			            UIManager.put("Button.arc", 15); // Botones redondeados
+			            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+			            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+			            
+			        } catch (Exception e) {
+			            System.err.println("Error al aplicar FlatLaf");
+			        }
+				 
 				try {
 					VentanaSignin frame = new VentanaSignin();
 					frame.setVisible(true);
@@ -61,7 +75,7 @@ public class VentanaSignin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Registar");
-		lblNewLabel.setBounds(177, 35, 104, 51);
+		lblNewLabel.setBounds(170, 21, 164, 55);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 26));
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		contentPane.add(lblNewLabel);
@@ -75,13 +89,13 @@ public class VentanaSignin extends JFrame {
 		contentPane.add(passwordField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(59, 114, 44, 12);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(59, 114, 73, 17);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Contraseña");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(59, 171, 92, 12);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(59, 171, 92, 18);
 		contentPane.add(lblNewLabel_2);
 		
 		JCheckBox chckbxDoctor = new JCheckBox("¿Es Odontólogo?");
@@ -93,6 +107,9 @@ public class VentanaSignin extends JFrame {
 
 		
 		JButton btnNewButton = new JButton("Registrar Usuario");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 153));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,6 +131,9 @@ public class VentanaSignin extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ingresar");
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 153));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,6 +144,10 @@ public class VentanaSignin extends JFrame {
 		});
 		btnNewButton_1.setBounds(59, 238, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("Generar un usuario");
+		lblNewLabel_3.setBounds(172, 63, 120, 12);
+		contentPane.add(lblNewLabel_3);
 		
 	
 	}

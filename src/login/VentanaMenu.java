@@ -10,7 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import com.formdev.flatlaf.FlatLightLaf;
 
 import expedientes.VentanaBusqueda;
 import expedientes.VentanaExpedientes;
@@ -27,6 +30,17 @@ public class VentanaMenu extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try {
+		        	FlatLightLaf.setup();
+		           
+		            UIManager.put("Button.arc", 15); // Botones redondeados
+		            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+		            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+		            
+		        } catch (Exception e) {
+		            System.err.println("Error al aplicar FlatLaf");
+		        }
+				
 				try {
 					VentanaMenu frame = new VentanaMenu();
 					frame.setVisible(true);
@@ -94,7 +108,7 @@ public class VentanaMenu extends JFrame {
 		JLabel lblNewLabel = new JLabel("INICIO");
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
-		lblNewLabel.setBounds(323, 38, 92, 65);
+		lblNewLabel.setBounds(317, 25, 92, 65);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton_3 = new JButton("Cerrar Sesión");
@@ -108,7 +122,7 @@ public class VentanaMenu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_3.setBounds(288, 352, 134, 36);
+		btnNewButton_3.setBounds(288, 363, 134, 36);
 		contentPane.add(btnNewButton_3);
 
 	}

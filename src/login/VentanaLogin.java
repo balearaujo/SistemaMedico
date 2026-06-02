@@ -6,11 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import modelo.Usuario;
 import modelo.archivousuarios;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.Color;
@@ -31,6 +34,17 @@ public class VentanaLogin extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				 try {
+			        	FlatLightLaf.setup();
+			           
+			            UIManager.put("Button.arc", 15); // Botones redondeados
+			            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+			            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+			            
+			        } catch (Exception e) {
+			            System.err.println("Error al aplicar FlatLaf");
+			        }
+				 
 				try {
 					VentanaLogin frame = new VentanaLogin();
 					frame.setVisible(true);
@@ -62,22 +76,25 @@ public class VentanaLogin extends JFrame {
 		contentPane.add(contrasenia);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(59, 114, 44, 12);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(59, 114, 63, 17);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(59, 171, 92, 12);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(59, 171, 92, 18);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingresar");
 		lblNewLabel_2.setForeground(new Color(0, 64, 128));
-		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD, 26));
-		lblNewLabel_2.setBounds(180, 35, 109, 51);
+		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD, 29));
+		lblNewLabel_2.setBounds(176, 22, 138, 51);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Enviar");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton.setBackground(new Color(0, 0, 153));
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,6 +122,9 @@ public class VentanaLogin extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrar");
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1.setBackground(new Color(0, 0, 153));
 		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,6 +135,10 @@ public class VentanaLogin extends JFrame {
 		});
 		btnNewButton_1.setBounds(62, 240, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("Bienvenido de nuevo");
+		lblNewLabel_3.setBounds(175, 64, 141, 12);
+		contentPane.add(lblNewLabel_3);
 
 	}
 }

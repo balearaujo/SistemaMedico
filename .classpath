@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/MIRIAM/Downloads/flatlaf-3.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/MIRIAM/Downloads/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/flatlaf-3.5.1.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

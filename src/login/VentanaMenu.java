@@ -59,7 +59,7 @@ public class VentanaMenu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(232, 122, 257, 65);
+		btnNewButton.setBounds(231, 100, 257, 65);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Buscar Expediente");
@@ -72,7 +72,7 @@ public class VentanaMenu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(232, 210, 257, 65);
+		btnNewButton_1.setBounds(231, 188, 257, 65);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Generar Citas");
@@ -84,16 +84,32 @@ public class VentanaMenu extends JFrame {
 				citaV.setVisible(true);
 				dispose();
 				
+				
+				
 			}
 		});
-		btnNewButton_2.setBounds(232, 298, 257, 65);
+		btnNewButton_2.setBounds(231, 276, 257, 65);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel = new JLabel("INICIO");
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
-		lblNewLabel.setBounds(323, 46, 92, 65);
+		lblNewLabel.setBounds(323, 38, 92, 65);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton_3 = new JButton("Cerrar Sesión");
+		btnNewButton_3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(0, 87, 130));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLogin login= new VentanaLogin();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_3.setBounds(288, 352, 134, 36);
+		contentPane.add(btnNewButton_3);
 
 	}
 }

@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 public class ventana_calendario extends JFrame {
 
@@ -44,29 +45,60 @@ public class ventana_calendario extends JFrame {
 		contentPane.setLayout(new BorderLayout(0,10));
 		
 		calendario= new JCalendar();
+		Date DatediaActual=new Date();
+		
+		calendario.setMinSelectableDate(DatediaActual);
+		
+		
 		contentPane.add(calendario, BorderLayout.CENTER);
 		
 		JPanel panelBoton=new JPanel();
 		
 		JButton btnNewButton = new JButton("Confirmar cita");
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnNewButton.putClientProperty("JButton.buttonType","roundRect");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					int dia=calendario.getDayChooser().getDay();
-					int mes=calendario.getMonthChooser().getMonth()+1;
-					int anio=calendario.getYearChooser().getYear();
+				
+					int diaSel=calendario.getDayChooser().getDay();
+					int mesSel=calendario.getMonthChooser().getMonth()+1;
+					int anioSel=calendario.getYearChooser().getYear();
+				
+					java.util.Calendar ahora= java.util.Calendar.getInstance();
+					int dia=ahora.get(java.util.Calendar.DAY_OF_MONTH);
+					int mes=ahora.get(java.util.Calendar.MONTH)+1;
+					int anio= ahora.get(java.util.Calendar.YEAR);
+					int horaActual=ahora.get(java.util.Calendar.HOUR_OF_DAY);
 					
 					String[]horarios= {"10:00 AM","11:00 AM", "12:00 PM", "01:00 PM","02:00 PM", "03:00 PM"};
 					String horaSelecc= (String) JOptionPane.showInputDialog(null,"Seleccione un horario para el "
 					+dia+"/"+mes+"/"+anio,"Horarios", JOptionPane.QUESTION_MESSAGE,null,horarios,horarios[0]);
 							
-					if (horaSelecc !=null) {
+					
+					if (horaSelecc != null) {
+						int horaH=Integer.parseInt(horaSelecc.split(":")[0]);
+							if(horaSelecc.contains("PM") && horaH !=12)  {
+								horaH +=12;
+						}	else if(horaSelecc.contains("AM") && horaH ==12){
+							horaH =0;
+							
+						}
+							
+						if (anioSel ==anio && mesSel ==mes && diaSel == dia ) {
+							if (horaH<= horaActual) {
+								JOptionPane.showMessageDialog(null,"No se puede elegir este horario","Horario inválido",JOptionPane.WARNING_MESSAGE);
+								return;
+							}
+						}
+						
 						java.util.ArrayList<Cita> todaslasCitas=ArchivoCitas.leerTodas();
 						boolean ocupado=false;
-					for(Cita c:todaslasCitas) {
-						if(c.getDia()==dia && c.getMes()==mes && c.getAnio()==anio && c.getHora().equals(horaSelecc)){
-							ocupado=true;
-							break;
+						if (todaslasCitas !=null) {
+						for(Cita c:todaslasCitas) {
+							if(c.getDia()==dia && c.getMes()==mes && c.getAnio()==anio && c.getHora().equals(horaSelecc)){
+								ocupado=true;
+								break;
+							}
 						}
 					}
 					

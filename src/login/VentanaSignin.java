@@ -117,6 +117,16 @@ public class VentanaSignin extends JFrame {
 				String user=textPane.getText();
 				String pswd= new String (passwordField.getPassword()); 
 				
+				if (user.isEmpty() || pswd.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos", "WARNING", 2);
+					return;
+				} 
+				
+				if (archivousuarios.VerificarNombre(user)) {
+					JOptionPane.showMessageDialog(null, "Este nombre de usuario ya fue tomado", "WARNING", 2);
+					return;
+				}
+					
 				if (chckbxDoctor.isSelected()) {
 					nuevo=new Odontologo(user,pswd);
 				}else {
@@ -124,6 +134,7 @@ public class VentanaSignin extends JFrame {
 				}
 				archivousuarios.guardarUsuario(nuevo);
 				JOptionPane.showMessageDialog(null,"Usuario "+nuevo.getTipodeUsuario()+" guardado!", "Nuevo doccc", 3);
+				
 				
 			}
 		});

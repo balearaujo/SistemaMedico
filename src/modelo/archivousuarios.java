@@ -2,6 +2,8 @@ package modelo;
 import java.io.*;
 import java.util.ArrayList;
 
+import expedientes.Expedientes;
+
 public class archivousuarios {
 	private static final String RUTA_ARCH="usuarios.dat";
 	
@@ -24,5 +26,14 @@ public class archivousuarios {
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}
+	}
+	
+	public static Boolean VerificarNombre (String nombre) {
+		ArrayList<Usuario> lista=leerTodos();
+		for (Usuario u: lista) {
+			if (u.getUser().equals(nombre));
+			return true;
+		}
+		return false;
 	}
 }

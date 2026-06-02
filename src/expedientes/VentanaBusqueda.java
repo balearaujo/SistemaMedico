@@ -182,12 +182,12 @@ public class VentanaBusqueda extends JFrame {
 				for (Expedientes e1: expBusq) {
 					boolean encontrado=false;
 					if (docBtn.isSelected()) {
-						if (e1.getEstomatologo().equals(textField.getText())) {
+						if (e1.getEstomatologo().equalsIgnoreCase(textField.getText())) {
 							encontrado=true;
 						}
 					}
 					if (PacBtn.isSelected()) {
-						if (e1.getNombre().equals(textField.getText())) {
+						if (e1.getNombre().equalsIgnoreCase(textField.getText())) {
 							encontrado=true;
 						}
 					}
@@ -202,13 +202,13 @@ public class VentanaBusqueda extends JFrame {
 					if (SxBtn.isSelected()) {
 						char sx = (textField.getText().length() > 0) ? textField.getText().charAt(0) : ' ';
 						
-						if (e1.getSexo() == sx) {
+						if (Character.toUpperCase(e1.getSexo()) == Character.toUpperCase(sx)) {
 							encontrado=true;
 						}
 					}
 					
 					if (PadBtn.isSelected()) {
-						if (e1.getPadecimiento().equals(textField.getText())) {
+						if (e1.getPadecimiento().equalsIgnoreCase(textField.getText())) {
 							encontrado=true;
 						}
 					}

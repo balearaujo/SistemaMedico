@@ -5,10 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import login.VentanaMenu;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -44,6 +47,17 @@ public class VentanaExpedientes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+		        	FlatLightLaf.setup();
+		           
+		            UIManager.put("Button.arc", 15); // Botones redondeados
+		            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+		            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+		            
+		        } catch (Exception e) {
+		            System.err.println("Error al aplicar FlatLaf");
+		        }
+				
+				try {
 					VentanaExpedientes frame = new VentanaExpedientes();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,7 +89,7 @@ public class VentanaExpedientes extends JFrame {
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		lblNewLabel.setBackground(new Color(0, 64, 128));
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
-		lblNewLabel.setBounds(145, 20, 160, 53);
+		lblNewLabel.setBounds(144, 20, 241, 53);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
@@ -235,6 +249,9 @@ public class VentanaExpedientes extends JFrame {
 		Telefono.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Guardar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton.setBackground(new Color(0, 87, 130));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -258,11 +275,21 @@ public class VentanaExpedientes extends JFrame {
 	            char sx = (sexo.getText().length() > 0) ? sexo.getText().charAt(0) : ' ';
 	            char enf = (enfermedad.getText().length() > 0) ? enfermedad.getText().charAt(0) : ' ';
 	            
+	            if (estoma.isEmpty() || nom.isEmpty() || ale.isEmpty() || cualEnf.isEmpty() || san.isEmpty() || pad.isEmpty() 
+	            		|| fech.isEmpty() || dom.isEmpty()|| tel.isEmpty() || edad.getText().isEmpty() || altura.getText().isEmpty()
+	            		|| peso.getText().isEmpty() || sexo.getText().isEmpty() || enfermedad.getText().isEmpty()) {
+	            	JOptionPane.showMessageDialog(null, "Por favor llena todos los campos");
+	            } else {
+	            
 	            Expedientes nuevoEX= new Expedientes(estoma, nom, ed, sx,  alt, pe, ale,
 	        			enf, cualEnf, san, pad, fech, dom, tel);
 	            
 	            ArchivoExpedientes.guardarExpediente(nuevoEX);
 	            JOptionPane.showMessageDialog(null, "Guardado", "Guardar", 2);;
+	            VentanaMenu menu= new VentanaMenu();
+				menu.setVisible(true);
+				dispose();
+	            }
 				} catch (NumberFormatException Ex) {
 	            	JOptionPane.showMessageDialog(null, "Ingresa un numero correcto para edad, altura y peso", "Numeros", 1);
 	            }
@@ -270,23 +297,14 @@ public class VentanaExpedientes extends JFrame {
 			
 		
 		});
-		btnNewButton.setBounds(184, 589, 84, 20);
+		btnNewButton.setBounds(40, 589, 84, 20);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Leer expediente");
-		btnNewButton_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ArrayList<Expedientes> expPrueba=ArchivoExpedientes.leerTodos();
-				for (Expedientes u: expPrueba) {
-					System.out.println(u);
-				}
-			}
-		});
-		btnNewButton_1.setBounds(27, 589, 124, 20);
-		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Regresar");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(0, 87, 130));
 		btnNewButton_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

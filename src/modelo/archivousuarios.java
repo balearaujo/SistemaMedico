@@ -31,8 +31,7 @@ public class archivousuarios {
 	public static Boolean VerificarNombre (String nombre) {
 		ArrayList<Usuario> lista=leerTodos();
 		for (Usuario u: lista) {
-			if (u.getUser().equals(nombre));
-			return true;
+			if (u.getUser().equals(nombre)) return true;
 		}
 		return false;
 	}

@@ -13,9 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import login.VentanaMenu;
 
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -45,6 +48,17 @@ public class ExpedienteDetalles extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try {
+		        	FlatLightLaf.setup();
+		           
+		            UIManager.put("Button.arc", 15); // Botones redondeados
+		            UIManager.put("Component.focusWidth", 1); // Borde de enfoque más fino
+		            UIManager.put("TextComponent.arc", 10); // Campos de texto redondeados
+		            
+		        } catch (Exception e) {
+		            System.err.println("Error al aplicar FlatLaf");
+		        }
+				
 				try {
 					ExpedienteDetalles frame = new ExpedienteDetalles(null);
 					frame.setVisible(true);
@@ -79,7 +93,7 @@ public class ExpedienteDetalles extends JFrame {
 		lblNewLabel.setForeground(new Color(0, 64, 128));
 		lblNewLabel.setBackground(new Color(0, 64, 128));
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
-		lblNewLabel.setBounds(145, 20, 160, 53);
+		lblNewLabel.setBounds(145, 20, 216, 53);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
@@ -240,6 +254,9 @@ public class ExpedienteDetalles extends JFrame {
 		Telefono.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("Regresar");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_2.setBackground(new Color(0, 87, 130));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMenu menu= new VentanaMenu();

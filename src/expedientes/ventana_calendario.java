@@ -2,6 +2,7 @@ package expedientes;
 
 import com.toedter.calendar.JCalendar;
 
+import Hilo.Hilos;
 import login.VentanaMenu;
 
 import javax.swing.JPanel;
@@ -14,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class ventana_calendario extends JFrame {
 
@@ -127,6 +130,11 @@ public class ventana_calendario extends JFrame {
 			}
 		});
 		panelBoton.add(btnNewButton_1);
+		
+		JLabel lblreloj = new JLabel("Reloj");
+		panelBoton.add(lblreloj);
+		Hilos hiloReloj=new Hilos(lblreloj);
+		hiloReloj.start();
 	}
 
 }

@@ -179,45 +179,57 @@ public class VentanaBusqueda extends JFrame {
 				ArrayList<Expedientes>expBusq = ArchivoExpedientes.leerTodos();
 				ArrayList<Expedientes>resultados=new ArrayList<>();
 				
-				for (Expedientes e1: expBusq) {
-					boolean encontrado=false;
-					if (docBtn.isSelected()) {
-						if (e1.getEstomatologo().equalsIgnoreCase(textField.getText())) {
-							encontrado=true;
+				if (textField.getText().isEmpty()) {
+					if (expBusq != null) {
+		                resultados.addAll(expBusq);
+		            }
+				} else {
+					for (Expedientes e1: expBusq) {
+						boolean encontrado=false;
+						if (docBtn.isSelected()) {
+							if (e1.getEstomatologo().toLowerCase().contains(textField.getText())) {
+								encontrado=true;
+							}
 						}
-					}
-					if (PacBtn.isSelected()) {
-						if (e1.getNombre().equalsIgnoreCase(textField.getText())) {
-							encontrado=true;
+						if (PacBtn.isSelected()) {
+							if (e1.getNombre().toLowerCase().contains(textField.getText())) {
+								encontrado=true;
+							}
 						}
-					}
-					
-					if (AgeBtn.isSelected()) {
-						int ag=Integer.parseInt(textField.getText());
-						if (e1.getEdad() == ag){
-							encontrado=true;
-						}
-					}
-					
-					if (SxBtn.isSelected()) {
-						char sx = (textField.getText().length() > 0) ? textField.getText().charAt(0) : ' ';
 						
-						if (Character.toUpperCase(e1.getSexo()) == Character.toUpperCase(sx)) {
-							encontrado=true;
+						if (AgeBtn.isSelected()) {
+							try {
+								int ag=Integer.parseInt(textField.getText().trim());
+								if (e1.getEdad() == ag){
+									encontrado=true;
+								}
+							} catch (NumberFormatException Ex) {
+								JOptionPane.showMessageDialog(null, "Escribe correctamente el numero", "Warning", 2);
+								return;
+							}
 						}
-					}
-					
-					if (PadBtn.isSelected()) {
-						if (e1.getPadecimiento().equalsIgnoreCase(textField.getText())) {
-							encontrado=true;
+						
+						if (SxBtn.isSelected()) {
+							char sx = (textField.getText().length() > 0) ? textField.getText().charAt(0) : ' ';
+							
+							if (Character.toUpperCase(e1.getSexo()) == Character.toUpperCase(sx)) {
+								encontrado=true;
+							}
 						}
+						
+						if (PadBtn.isSelected()) {
+							if (e1.getPadecimiento().toLowerCase().contains(textField.getText())) {
+								encontrado=true;
+							}
+						}
+						
+						if (encontrado) {
+							System.out.print("Si encontramos el Expediente (Esta es una prueba) ");
+							resultados.add(e1);
+						} 
 					}
-					
-					if (encontrado) {
-						System.out.print("Si encontramos el Expediente (Esta es una prueba) ");
-						resultados.add(e1);
-					} 
 				}
+				
 				if (resultados.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "No esta bajo este filtro", "No encontrado", 1);
 				} else {
@@ -264,7 +276,7 @@ public class VentanaBusqueda extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMenu menu= new VentanaMenu();
 				menu.setVisible(true);
-				dispose();
+				dispose(); 
 			}
 		});
 

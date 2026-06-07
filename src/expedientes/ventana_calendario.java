@@ -75,7 +75,7 @@ public class ventana_calendario extends JFrame {
 					
 					String[]horarios= {"10:00 AM","11:00 AM", "12:00 PM", "01:00 PM","02:00 PM", "03:00 PM"};
 					String horaSelecc= (String) JOptionPane.showInputDialog(null,"Seleccione un horario para el "
-					+dia+"/"+mes+"/"+anio,"Horarios", JOptionPane.QUESTION_MESSAGE,null,horarios,horarios[0]);
+					+diaSel+"/"+mesSel+"/"+anioSel,"Horarios", JOptionPane.QUESTION_MESSAGE,null,horarios,horarios[0]);
 							
 					
 					if (horaSelecc != null) {
@@ -98,7 +98,7 @@ public class ventana_calendario extends JFrame {
 						boolean ocupado=false;
 						if (todaslasCitas !=null) {
 						for(Cita c:todaslasCitas) {
-							if(c.getDia()==dia && c.getMes()==mes && c.getAnio()==anio && c.getHora().equals(horaSelecc)){
+							if(c.getDia()==diaSel && c.getMes()==mesSel && c.getAnio()==anioSel && c.getHora().equals(horaSelecc)){
 								ocupado=true;
 								break;
 							}
@@ -108,10 +108,10 @@ public class ventana_calendario extends JFrame {
 					if (ocupado) {
 						JOptionPane.showMessageDialog(null,"El horario "+horaSelecc+" ya esta ocupado","Error de cita",JOptionPane.WARNING_MESSAGE);
 					}else {
-						Cita nueva=new Cita(dia,mes,anio, horaSelecc);
+						Cita nueva=new Cita(diaSel,mesSel,anioSel, horaSelecc);
 						ArchivoCitas.guardarCita(nueva);
 						ArchivoCitas.generarTicket(nueva);
-					JOptionPane.showMessageDialog(null,"Fecha de cita:"+dia+"/"+mes+"/"+anio+"\n\n Hora:" +horaSelecc+"\n\n¡Ticket generado!","Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Fecha de cita:"+diaSel +"/"+mesSel+"/"+anioSel +"\n\n Hora:" +horaSelecc+"\n\n¡Ticket generado!","Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
 				}
 					}
 			}

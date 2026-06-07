@@ -57,7 +57,7 @@ public class ventana_calendario extends JFrame {
 		
 		JPanel panelBoton=new JPanel();
 		
-		JButton btnNewButton = new JButton("Confirmar cita");
+		JButton btnNewButton = new JButton("Confirmar fecha");
 		btnNewButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		btnNewButton.putClientProperty("JButton.buttonType","roundRect");
 		btnNewButton.addActionListener(new ActionListener() {

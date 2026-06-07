@@ -18,6 +18,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import expedientes.VentanaBusqueda;
 import expedientes.VentanaExpedientes;
 import expedientes.ventana_calendario;
+import modelo.Usuario;
 
 public class VentanaMenu extends JFrame {
 

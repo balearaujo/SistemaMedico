@@ -10,6 +10,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import modelo.Usuario;
 import modelo.archivousuarios;
+import modelo.usEstatico;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -108,8 +109,12 @@ public class VentanaLogin extends JFrame {
 					}
 				}
 				if (usuarioEncontrado !=null) {
+					usEstatico.setUsuarioLogeado(usuarioEncontrado);
+					
 					String msj = "Bienvenid@ "+usuarioEncontrado.getUser()+ "\nEntrando como: "+usuarioEncontrado.getTipodeUsuario();
 					JOptionPane.showMessageDialog(null, msj, "LogIn", 1);
+					
+					
 					VentanaMenu menu=new VentanaMenu();
 					menu.setVisible(true);
 					dispose();

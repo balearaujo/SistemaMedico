@@ -4,6 +4,8 @@ import com.toedter.calendar.JCalendar;
 
 import Hilo.Hilos;
 import login.VentanaMenu;
+import modelo.Usuario;
+import modelo.usEstatico;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -62,7 +64,14 @@ public class ventana_calendario extends JFrame {
 		btnNewButton.putClientProperty("JButton.buttonType","roundRect");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+					Usuario usuarioAct=usEstatico.getUsuarioLogeado();
+					if (usuarioAct!=null && usuarioAct.getTipodeUsuario().equals("Doctor")) {
+						JOptionPane.showMessageDialog(null, "Solo el rol de Asistente puede generar citas");
+						VentanaMenu menu= new VentanaMenu();
+						menu.setVisible(true);
+						dispose();
+					} else {
+					
 					int diaSel=calendario.getDayChooser().getDay();
 					int mesSel=calendario.getMonthChooser().getMonth()+1;
 					int anioSel=calendario.getYearChooser().getYear();
@@ -113,6 +122,7 @@ public class ventana_calendario extends JFrame {
 						ArchivoCitas.generarTicket(nueva);
 					JOptionPane.showMessageDialog(null,"Fecha de cita:"+diaSel +"/"+mesSel+"/"+anioSel +"\n\n Hora:" +horaSelecc+"\n\n¡Ticket generado!","Confirmacion de cita", JOptionPane.INFORMATION_MESSAGE);
 				}
+					}
 					}
 			}
 		});

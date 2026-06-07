@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import login.VentanaMenu;
+import modelo.Usuario;
+import modelo.usEstatico;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -47,6 +49,7 @@ public class VentanaExpedientes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Usuario user;
 		        	FlatLightLaf.setup();
 		           
 		            UIManager.put("Button.arc", 15); // Botones redondeados
@@ -257,6 +260,7 @@ public class VentanaExpedientes extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+				
 				String estoma = estomatologo.getText();
 	            String nom = nombre.getText();
 	            String ale = alergias.getText();
